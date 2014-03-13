@@ -2,12 +2,11 @@ package edu.nyu.dlts.fiwalk
 
 class Input(path: String){
   val file = new java.io.File(path)
-  println(file.exists)
+  new FidoWrapper(file).getPronom
 }
 
 object Input{
   def main(args: Array[String]){
-    val path = "src/main/resources/testfile.txt"
-    new Input(path)
+    new Input(args(0))
   }
 }
