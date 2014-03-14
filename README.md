@@ -8,4 +8,4 @@ prerequisite for build: sbt
 how to build:
 
 $sbt
-> assembly
+\> assembly
