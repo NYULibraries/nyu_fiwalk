@@ -23,11 +23,10 @@ class ClamScanS(host: String, port: Int, timeout: Int){
     dos.write(command)
     dos.flush
     val is = socket.getInputStream
-    var read = CHUNK_SIZE
     val buffer = new Array[Byte](CHUNK_SIZE)
-    while(read == buffer){
-      read = is.read(buffer)
-      response.append(new String(buffer, 0, read))
+
+    Stream.continually(is.read(buffer)).takeWhile(_ != -1).foreach{i => 
+      response.append(new String(buffer, 0, i))
     }
 
     dos.close
