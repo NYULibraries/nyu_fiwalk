@@ -4,7 +4,6 @@ import scala.sys.process._
 import scala.util.matching.Regex._
 
 class FidoWrapper(file: java.io.File){
-
   val fido = ("fido " + file.getAbsolutePath) lines_! ProcessLogger(line => ())  
   val pattern = "^\".*\"$".r
 

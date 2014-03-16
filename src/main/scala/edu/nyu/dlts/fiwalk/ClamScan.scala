@@ -1,7 +1,7 @@
 package edu.nyu.dlts.fiwalk
 
-class ClamScanS(host: String, port: Int, timeout: Int){
-  println("scanner")
+class ClamScan(host: String, port: Int, timeout: Int){
+
   val CHUNK_SIZE = 2048
   val INSTREAM = "zINSTREAM\0".getBytes()
   val PING = "zPING\0".getBytes()
