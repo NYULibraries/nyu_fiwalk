@@ -12,13 +12,13 @@ class VirusScan(file: java.io.File){
   import scala.util.matching.Regex._
   val fis = new java.io.FileInputStream(file)
   val scanner = new ClamScan("localhost", 3310, 600000000);
-  val result = scanner.scan(fis)
+  val scanResult = scanner.scan(fis)
   val pattern = "FOUND".r
-  if((pattern findAllIn result.getResult).isEmpty){
+  if((pattern findAllIn scanResult.result).isEmpty){
     println("virusFound: false")
   } else {
     println("virusFound: true")
-    println("VirusSignature: " + result.getSignature)
+    println("VirusSignature: " + scanResult.signature)
   }
 }
 
