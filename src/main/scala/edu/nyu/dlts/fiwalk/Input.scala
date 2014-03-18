@@ -2,12 +2,13 @@ package edu.nyu.dlts.fiwalk
 
 class Input(path: String){
   val file = new java.io.File(path)
-  val fido = new FidoWrapper(file)
+  val fido = new FidoWrapper(file).fidoModel
+  println(fido)
+  println("identificationUuid: " + java.util.UUID.randomUUID.toString)
   new virusScan(file)
   println("virusScanUuid: " + java.util.UUID.randomUUID.toString)
-  fido.getPronom
-  fido.getVersion
-  println("identificationUuid: " + java.util.UUID.randomUUID.toString)
+
+
 }
 
 class virusScan(file: java.io.File){
@@ -18,9 +19,11 @@ class virusScan(file: java.io.File){
   val pattern = "FOUND".r
   if((pattern findAllIn scanResult.result).isEmpty){
     println("virusFound: false")
+    println("clamavVersion: " + scanResult.version)
   } else {
     println("virusFound: true")
     println("VirusSignature: " + scanResult.signature)
+    println("clamavVersion: " + scanResult.version)
   }
 }
 

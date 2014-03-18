@@ -56,7 +56,7 @@ class ClamScan(host: String, port: Int, timeout: Int){
     if (read > 0) response = new String(buffer, 0, read);
     dos.close;
     socket.close;
-    new ScanResult(response.trim());
+    new ScanResult(response.trim(), getVersion);
   }
 
   def getDOS(socket: java.net.Socket): java.io.DataOutputStream = {   
@@ -76,4 +76,11 @@ class ClamScan(host: String, port: Int, timeout: Int){
     }
     socket
   }
+  
+  def getVersion(): String = {
+    import scala.sys.process._
+    val version = "clamd -V" lines_! ProcessLogger(line => ())
+    version(0).split("/")(0)
+  }
+  
 }

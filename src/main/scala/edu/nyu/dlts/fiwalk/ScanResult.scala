@@ -1,7 +1,8 @@
 package edu.nyu.dlts.fiwalk
 
-class ScanResult(r: String){
+class ScanResult(r: String, v: String){
   val result = r
+  val version = v
   val RESPONSE_OK = "stream: OK";
   val STREAM_PREFIX = "stream: ";
   val FOUND_SUFFIX = "FOUND";
