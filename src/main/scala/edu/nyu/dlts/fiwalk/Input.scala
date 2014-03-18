@@ -2,13 +2,15 @@ package edu.nyu.dlts.fiwalk
 
 class Input(path: String){
   val file = new java.io.File(path)
-  new FidoWrapper(file).getPronom
-  new VirusScan(file)
-  println("uuid: " + java.util.UUID.randomUUID.toString)
-
+  val fido = new FidoWrapper(file)
+  new virusScan(file)
+  println("virusScanUuid: " + java.util.UUID.randomUUID.toString)
+  fido.getPronom
+  fido.getVersion
+  println("identificationUuid: " + java.util.UUID.randomUUID.toString)
 }
 
-class VirusScan(file: java.io.File){
+class virusScan(file: java.io.File){
   import scala.util.matching.Regex._
   val fis = new java.io.FileInputStream(file)
   val scanner = new ClamScan("localhost", 3310, 600000000);
