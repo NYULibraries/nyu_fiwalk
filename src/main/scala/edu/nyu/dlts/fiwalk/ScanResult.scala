@@ -2,7 +2,7 @@ package edu.nyu.dlts.fiwalk
 
 class ScanResult(r: String, v: String){
   val result = r
-  val version = v
+  val version = v.split("/")(0)
   val RESPONSE_OK = "stream: OK";
   val STREAM_PREFIX = "stream: ";
   val FOUND_SUFFIX = "FOUND";
@@ -25,5 +25,12 @@ class ScanResult(r: String, v: String){
     if(status.equals("FOUND")){result.substring(STREAM_PREFIX.length(), result.lastIndexOf(FOUND_SUFFIX) - 1)}
     else{""}
   }
+  
+  override def toString(): String = {
+    val builder = new StringBuilder()
+    builder.append("scanStatus: " + status)
+    if(status.equals("FOUND")){builder.append("\nvirusSignature: " + signature)}
+    builder.append("\nclamAVVersion: " + version)
+    builder.toString
+  }
 }
-
