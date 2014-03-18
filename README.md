@@ -15,13 +15,11 @@ prequisite for deployment
 how to build:
 -------------
 
-$sbt
-
-\> assembly
+$ sbt assembly
 
 how to test it works
 --------------------
-\>java -jar target/scala-2.10/nyudgi.jar src/main/resources/test.odt<br />
+$ java -jar target/scala-2.10/nyudgi.jar src/main/resources/test.odt<br />
 
 <b>this should output</b><br />
 pronomPuid: fmt/291<br />
