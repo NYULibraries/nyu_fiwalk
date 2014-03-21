@@ -6,12 +6,17 @@ class Input(path: String){
   val file = new File(path)
   val fido = new FidoWrapper(file).fidoModel
   println(fido)
-  println("identificationUuid: " + java.util.UUID.randomUUID.toString)
+  println("identificationUUID: " + java.util.UUID.randomUUID.toString)
   
   val scan = new ClamScan("localhost", 3310, 600000000).scan(new FileInputStream(file))
   println(scan)
-  println("virusScanUuid: " + java.util.UUID.randomUUID.toString)
+  println("virusScanUUID: " + java.util.UUID.randomUUID.toString)
 
+  if(fido.mediaType.getType.equals("image")){
+    val exif = new Exif(file)
+    println(exif)
+    println("exifUUID: " + java.util.UUID.randomUUID.toString)
+  }
 
 }
 
