@@ -3,12 +3,12 @@ package edu.nyu.dlts.fiwalk
 import scala.sys.process._
 import scala.collection.JavaConversions._
 import java.io.File
-import java.util.HashMap
+import java.util.TreeMap
 
 class Exif(file: File){
-  val exifmap = new HashMap[String, String]
+  val exifmap = new TreeMap[String, String]
   val exif = ("exiftool " + file.getAbsolutePath) lines_! ProcessLogger(line => ())
-  val allowedTags = List("imageHeight", "imageWidth", "compression", "filter", "interlace", "bitDepth", "software")
+  val allowedTags = List("imageHeight", "imageWidth", "compression", "filter", "interlace", "bitDepth", "software", "colorSpace")
 
   exif.foreach{entries =>
     val entry = entries.split(" : ")
