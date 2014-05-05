@@ -1,0 +1,11 @@
+#!/bin/sh
+
+raw="$1.001"
+dfxml="./$1_dfxml.xml"
+mac="./$1_mactime.csv"
+tmp="./tmp.txt"
+
+fiwalk -xc /opt/fiwalk/fiwalk.conf $raw > $dfxml
+fls -rm "/" $raw > $tmp
+mactime -b $tmp -d > $mac
+rm $tmp
