@@ -12,10 +12,12 @@ class Input(path: String){
   println(scan)
   println("virusScanUUID: " + java.util.UUID.randomUUID.toString)
 
-  if(fido.mediaType.getType.equals("image")){
-    val exif = new Exif(file)
-    println(exif)
-    println("exifUUID: " + java.util.UUID.randomUUID.toString)
+  if(fido.mediaType != null){
+    if(fido.mediaType.getType.equals("image")){
+      val exif = new Exif(file)
+      println(exif)
+      println("exifUUID: " + java.util.UUID.randomUUID.toString)
+    }
   }
 
 }
