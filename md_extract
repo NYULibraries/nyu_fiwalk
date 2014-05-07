@@ -5,7 +5,13 @@ dfxml="./$1_dfxml.xml"
 mac="./$1_mactime.csv"
 tmp="./tmp.txt"
 
+offset=$(mmls -a $raw |  awk '{if ($3+0 > 0) print $3+0}')
+
 fiwalk -xc /opt/fiwalk/fiwalk.conf $raw > $dfxml
-fls -rm "/" $raw > $tmp
+fls -rm "/" -o $offset $raw > $tmp
 mactime -b $tmp -d > $mac
 rm $tmp
+bulk_extractor -o bulk_extractor_reports $raw
+
+cd bulk_extracxxxxxtor_reports && find . -size 0c -delete
+echo 'done'
