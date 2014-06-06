@@ -1,0 +1,21 @@
+#!/bin/sh
+
+raw="$1.001"
+dfxml="./$1_dfxml.xml"
+mac="./$1_mactime.csv"
+tmp="./tmp.txt"
+
+fiwalk -xc /opt/fiwalk/fiwalk.conf $raw > $dfxml
+fls -rm "/" $raw > $tmp
+mactime -b $tmp -d > $mac
+rm $tmp
+
+bs=$(ls -l $raw |  awk '{print $5}')
+md5=$(md5sum $raw | awk '{print $1}')
+sha1=$(openssl dgst -sha1 $raw | awk '{print $2}')
+fs=$(fsstat -t $raw | awk '{print $1}')
+
+echo "bytesize:" $bs
+echo "md5:" $md5
+echo "sha1:" $sha1
+echo "file system:" $fs
