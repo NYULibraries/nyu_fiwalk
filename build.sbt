@@ -12,6 +12,6 @@ scalaVersion := "2.10.3"
 
 libraryDependencies ++= Seq(
   "commons-logging" % "commons-logging" % "1.1.3",
-  "org.apache.tika" % "tika-core" % "1.5"
+  "org.apache.tika" % "tika-core" % "1.5",
+  "com.typesafe" % "config" % "1.2.1"
 )
-            

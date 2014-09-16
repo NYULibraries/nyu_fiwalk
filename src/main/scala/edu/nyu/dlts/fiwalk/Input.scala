@@ -1,8 +1,15 @@
 package edu.nyu.dlts.fiwalk
 import java.io.File
 import java.io.FileInputStream
+import com.typesafe.config._
 
-class Input(path: String){
+/*
+trait Tools {
+
+  def fido(file: File) {
+
+  }
+  /*
   val file = new File(path)
   val fido = new FidoWrapper(file).fidoModel
   println(fido)
@@ -19,11 +26,15 @@ class Input(path: String){
       println("exifUUID: " + java.util.UUID.randomUUID.toString)
     }
   }
-
+  */
 }
+*/
 
-object Input{
-  def main(args: Array[String]){
-    new Input(args(0))
-  }
+object Input extends App {
+  val conf = ConfigFactory.load()
+  val path = args(0)
+  val file = new File(path)
+  val fido = new FidoWrapper(file).fidoModel
+  println("identificationUUID: " + java.util.UUID.randomUUID.toString)
+  println(fido)
 }
